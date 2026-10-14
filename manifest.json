@@ -1,0 +1,9 @@
+{
+  "name": "Bhagavad Gita QR Library",
+  "short_name": "Gita QR",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fff8ed",
+  "theme_color": "#602b18",
+  "description": "Trilingual Bhagavad Gita chapter summaries and QR learning"
+}
