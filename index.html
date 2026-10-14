@@ -80,29 +80,24 @@ const SPEECH_LANG={te:"te-IN",hi:"hi-IN",en:"en-IN"};
 const HINDI_CHAPTER_VIDEO={1:"VyUO6DVXBOg",2:"T6jD0oxhppI",3:"OITjJS39P6c",4:"ejfEmlQNjL8",5:"jDiNnPJMSAo",6:"fyC1AvBEppI",7:"zu7Oo65Eab8",8:"VOdw9yZXgas",9:"AHg3g2ukRMk",10:"Tt532XFqbFA",11:"QJu7MFrtNVk",12:"rnvpgxzoiW0",13:"Rn656uyUqa8",14:"9yJ1mdKStB4",15:"6BtJiMTbTsg",16:"x5_uegyvUzo",18:"YBIdyX4DhRs"};
 const ENGLISH_ANIMATED={1:"9aZaR7pOxs8",2:"JanIPqPQTuQ"};
 // User-provided Telugu Bhagavad Gita YouTube playlist.
-const TELUGU_GITA_VIDEO="gSAYqEY8Rwg";
+const TELUGU_GITA_VIDEO="420g5a00VSE";
 const TELUGU_GITA_PLAYLIST="PLDwh6fgRnroLODX1Y16rC1OOtIzIgPCEW";
 function loadChapterVideo(chapter){
  const frame=byId("chapterVideo"),link=byId("openVideoYoutube"),status=byId("videoStatus"),title=byId("realVideoTitle");
  let id="",label="",src="";
  if(lang==="te"){
-   src="https://www.youtube-nocookie.com/embed/videoseries?list="+TELUGU_GITA_PLAYLIST+"&index="+(chapter-1);
-   label="మీరు ఇచ్చిన తెలుగు భగవద్గీత YouTube playlist";
+   id=TELUGU_GITA_VIDEO;
+   label="మీరు ఇచ్చిన తెలుగు భగవద్గీత వీడియో";
  }
  else if(lang==="en"&&ENGLISH_ANIMATED[chapter]){id=ENGLISH_ANIMATED[chapter];label=chapter===2?"English animated narration — Chapter 2, Part 1":"English animated narration — Chapter 1";}
  else if(HINDI_CHAPTER_VIDEO[chapter]){id=HINDI_CHAPTER_VIDEO[chapter];label="Hindi chapter video — Chapter "+chapter;}
  else {label="Video not available for this chapter yet";}
- title.textContent=lang==="te"?"▶ తెలుగు playlist వీడియోలు — అధ్యాయం "+chapter:lang==="hi"?"▶ अध्याय "+chapter+" वीडियो":"▶ Chapter "+chapter+" video";
- if(lang==="te"){
-   frame.src=src;
-   link.href="https://www.youtube.com/playlist?list="+TELUGU_GITA_PLAYLIST;
-   link.classList.remove("hidden");
-   status.textContent=label+" — playlist వీడియోలు ప్లేయర్‌లో కనిపిస్తాయి. ఎంచుకున్న అధ్యాయం కోసం playlist index ప్రయత్నిస్తాం; playlist క్రమం అధ్యాయాల క్రమంతో సరిపోతుందో ఇంకా నిర్ధారించలేదు.";
- } else if(id){
+ title.textContent=lang==="te"?"▶ తెలుగు భగవద్గీత వీడియో — అధ్యాయం "+chapter:lang==="hi"?"▶ अध्याय "+chapter+" वीडियो":"▶ Chapter "+chapter+" video";
+ if(id){
    frame.src="https://www.youtube-nocookie.com/embed/"+id+"?rel=0";
    link.href="https://www.youtube.com/watch?v="+id;
    link.classList.remove("hidden");
-   status.textContent=label+" — YouTube video.";
+   status.textContent=lang==="te"?label+" — అన్ని అధ్యాయాల ఎంపికల్లో ఇదే పూర్తి వీడియో తెరుచుకుంటుంది; ప్రతి అధ్యాయానికి విడి వీడియో/టైమ్‌స్టాంప్‌లు ఇంకా జోడించలేదు.":label+" — YouTube video.";
  } else {
    frame.removeAttribute("src");link.classList.add("hidden");
    status.textContent=lang==="hi"?"इस अध्याय का वीडियो अभी उपलब्ध नहीं है।":"No video is available for this chapter yet.";
