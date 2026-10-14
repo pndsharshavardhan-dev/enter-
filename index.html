@@ -79,12 +79,12 @@ const SPEECH_LANG={te:"te-IN",hi:"hi-IN",en:"en-IN"};
 // Gita4Youth animated narration is available for English Chapter 1 and Chapter 2 Part 1.
 const HINDI_CHAPTER_VIDEO={1:"VyUO6DVXBOg",2:"T6jD0oxhppI",3:"OITjJS39P6c",4:"ejfEmlQNjL8",5:"jDiNnPJMSAo",6:"fyC1AvBEppI",7:"zu7Oo65Eab8",8:"VOdw9yZXgas",9:"AHg3g2ukRMk",10:"Tt532XFqbFA",11:"QJu7MFrtNVk",12:"rnvpgxzoiW0",13:"Rn656uyUqa8",14:"9yJ1mdKStB4",15:"6BtJiMTbTsg",16:"x5_uegyvUzo",18:"YBIdyX4DhRs"};
 const ENGLISH_ANIMATED={1:"9aZaR7pOxs8",2:"JanIPqPQTuQ"};
-// Telugu video explains all 18 chapters in one video; it is not a separate clip per chapter.
-const TELUGU_FULL_VIDEO="_k3zH7a9UMo";
+// Telugu chapter-by-chapter videos sourced from the Telugu Devotional Swaranjali chapter list.
+const TELUGU_CHAPTER_VIDEO={1:"0ddhFCeFHsE",2:"WvcvYd5kTpo",3:"J94nE1KPGpI",4:"I_mOuFlU59k",5:"d4Qnj0YKCp0",6:"97V9yLYsB54",7:"bdLu_VlcUvc",8:"Ll-gDmjqlno",9:"_RnhziauD5E",10:"wWn7KuYwGRE",11:"Ndpo9n7n2Ig",12:"qE2sKMOCtps",13:"p3ZwdP18ZzI",14:"LbmstjKw664",15:"nP1ZoFbgs_E",16:"BSd31PLIcoQ",17:"25wv7L1pv70",18:"hdZnqb6NXx0"};
 function loadChapterVideo(chapter){
  const frame=byId("chapterVideo"),link=byId("openVideoYoutube"),status=byId("videoStatus"),title=byId("realVideoTitle");
  let id="",label="";
- if(lang==="te"){id=TELUGU_FULL_VIDEO;label="తెలుగులో మొత్తం 18 అధ్యాయాల వివరణ";}
+ if(lang==="te"&&TELUGU_CHAPTER_VIDEO[chapter]){id=TELUGU_CHAPTER_VIDEO[chapter];label="తెలుగు అధ్యాయం "+chapter+" వీడియో";}
  else if(lang==="en"&&ENGLISH_ANIMATED[chapter]){id=ENGLISH_ANIMATED[chapter];label=chapter===2?"English animated narration — Chapter 2, Part 1":"English animated narration — Chapter 1";}
  else if(HINDI_CHAPTER_VIDEO[chapter]){id=HINDI_CHAPTER_VIDEO[chapter];label="Hindi chapter video — Chapter "+chapter;}
  else {id="";label="Video not available for this chapter yet";}
