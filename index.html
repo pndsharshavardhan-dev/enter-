@@ -44,15 +44,30 @@ const byId=id=>document.getElementById(id);
 function textUI(){let c=UI[lang];for(let id of ["brand","tagline","topHelp","scanTitle","scanHelp","mediaTitle","mediaNote","listTitle","aboutTitle","aboutText"])byId(id).textContent=c[id];byId("back").textContent=c.back;byId("copyLink").textContent=c.copyLink;document.documentElement.lang=lang;renderList();if(!byId("chapterView").classList.contains("hidden"))openChapter(activeChapter,false)}
 function chapterName(ch){return ch[lang]}
 const VERIFIED_TELUGU_VIDEOS={
-1:{id:"58hXX2_y2Ts",title:"Complete Bhagavad Gita Chapter 1 Arjuna's Sad Yoga — RP Patnaik"},
-13:{id:"1afyZBGBbD4",title:"Bhagavad Gita Telugu — Chapter 13 Kshetra Kshetrajna Vibhaag Yoga — RP Patnaik"},
-14:{id:"xVqpHUjb4yc",title:"Complete Bhagavad Gita Chapter 14 Gunatraya Vibhaga Yoga — RP Patnaik"}
+1:{id:"gP3eD8az5N0",start:13,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 1 (RP Patnaik Official)"},
+2:{id:"gP3eD8az5N0",start:560,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 2 (RP Patnaik Official)"},
+3:{id:"gP3eD8az5N0",start:1545,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 3 (RP Patnaik Official)"},
+4:{id:"gP3eD8az5N0",start:2174,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 4 (RP Patnaik Official)"},
+5:{id:"gP3eD8az5N0",start:2811,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 5 (RP Patnaik Official)"},
+6:{id:"gP3eD8az5N0",start:3246,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 6 (RP Patnaik Official)"},
+7:{id:"gP3eD8az5N0",start:3896,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 7 (RP Patnaik Official)"},
+8:{id:"gP3eD8az5N0",start:4317,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 8 (RP Patnaik Official)"},
+9:{id:"gP3eD8az5N0",start:4734,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 9 (RP Patnaik Official)"},
+10:{id:"gP3eD8az5N0",start:5263,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 10 (RP Patnaik Official)"},
+11:{id:"gP3eD8az5N0",start:5769,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 11 (RP Patnaik Official)"},
+12:{id:"gP3eD8az5N0",start:6609,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 12 (RP Patnaik Official)"},
+13:{id:"gP3eD8az5N0",start:6915,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 13 (RP Patnaik Official)"},
+14:{id:"gP3eD8az5N0",start:7435,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 14 (RP Patnaik Official)"},
+15:{id:"gP3eD8az5N0",start:7803,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 15 (RP Patnaik Official)"},
+16:{id:"gP3eD8az5N0",start:8133,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 16 (RP Patnaik Official)"},
+17:{id:"gP3eD8az5N0",start:8500,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 17 (RP Patnaik Official)"},
+18:{id:"gP3eD8az5N0",start:8913,title:"సంపూర్ణ భగవద్గీత — అధ్యాయం 18 (RP Patnaik Official)"}
 };
 function renderVideoList(){const grid=byId("videoChapterGrid");if(!grid)return;grid.innerHTML="";GITA_CHAPTERS.forEach(ch=>{const b=document.createElement("button");b.className="chapter";const title=document.createElement("strong");title.textContent=String(ch.id).padStart(2,"0")+". "+ch.te;const small=document.createElement("span");small.className="small";small.textContent=VERIFIED_TELUGU_VIDEOS[ch.id]?"▶ ధృవీకరించిన వీడియో ప్లే చేయండి":"వీడియో లింక్ ఇంకా ధృవీకరించలేదు";b.append(title,small);b.onclick=()=>openChapter(ch.id);grid.append(b)})}
 function renderList(){let q=byId("search").value.toLowerCase().trim(),grid=byId("chaptersGrid");grid.innerHTML="";GITA_CHAPTERS.filter(ch=>[ch.en,ch.te,ch.hi].join(" ").toLowerCase().includes(q)).forEach(ch=>{let b=document.createElement("button");b.className="chapter";let strong=document.createElement("strong");strong.textContent=String(ch.id).padStart(2,"0")+". "+chapterName(ch);let small=document.createElement("span");small.className="small";small.textContent=UI[lang].chapter+" "+ch.id+" · "+ch.en;b.append(strong,small);b.onclick=()=>openChapter(ch.id);grid.append(b)})}
 function openChapter(n,scroll=true){const ch=GITA_CHAPTERS.find(x=>x.id===Number(n));if(!ch)return;activeChapter=ch.id;byId("chapterView").classList.remove("hidden");byId("chapterPill").textContent=UI[lang].chapter+" "+ch.id+" / 18";byId("chapterTitle").textContent=chapterName(ch);byId("chapterIntro").textContent=ch.en+" • "+ch.hi;byId("summary").textContent=ch.summary[lang]+"\n\n"+UI[lang].notAdded;
 const frame=byId("chapterVideo"), video=VERIFIED_TELUGU_VIDEOS[ch.id], note=byId("mediaNote"), yt=byId("openYoutube"), wrap=byId("videoFrameWrap");
-if(video){wrap.hidden=false;frame.hidden=false;frame.src="https://www.youtube.com/embed/"+video.id+"?rel=0";note.textContent=video.title+" — వీడియో ప్లే కాకపోతే కింద ఉన్న YouTube లింక్‌ను తెరవండి.";yt.hidden=false;yt.href="https://www.youtube.com/watch?v="+video.id;yt.textContent="YouTubeలో వీడియో తెరవండి ↗"}else{frame.hidden=true;frame.removeAttribute("src");wrap.hidden=true;note.textContent="ఈ అధ్యాయానికి సరైన తెలుగు వీడియో URL ఇంకా ధృవీకరించలేదు. తప్పు లింక్ చూపించకుండా ఖాళీగా ఉంచాం.";yt.hidden=true}
+if(video){wrap.hidden=false;frame.hidden=false;frame.src="https://www.youtube.com/embed/"+video.id+"?start="+video.start+"&rel=0";note.textContent=video.title+" — అధ్యాయం ప్రారంభ సమయానికి వీడియో తెరవబడుతుంది. ప్లే కాకపోతే YouTube లింక్‌ను తెరవండి.";yt.hidden=false;yt.href="https://www.youtube.com/watch?v="+video.id+"&t="+video.start+"s";yt.textContent="YouTubeలో వీడియో తెరవండి ↗"}else{frame.hidden=true;frame.removeAttribute("src");wrap.hidden=true;note.textContent="ఈ అధ్యాయానికి సరైన తెలుగు వీడియో URL ఇంకా ధృవీకరించలేదు.";yt.hidden=true}
 let a=byId("audio");a.pause();a.hidden=!ch.audio[lang];if(ch.audio[lang])a.src=ch.audio[lang];else a.removeAttribute("src");
 history.replaceState(null,"",location.pathname+"#chapter-"+ch.id);if(scroll)byId("chapterView").scrollIntoView({behavior:"smooth",block:"start"})}
 byId("lang").onchange=e=>{lang=e.target.value;textUI()};byId("search").oninput=renderList;byId("print").onclick=()=>window.print();byId("back").onclick=()=>{byId("chapterView").classList.add("hidden");byId("chaptersGrid").scrollIntoView({behavior:"smooth"})};
